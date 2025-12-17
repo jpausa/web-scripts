@@ -78,10 +78,12 @@ const getAttributeGroups = async () => {
   const groups: Array<{ id: string; name: string; number: string }> = []
   const pageSize = 1000
   let page = 0
+  let hasMore = true
 
-  do {
+  while (hasMore) {
     const headers = await getAuthHeaders()
-    const response = await fetch(`${environment.bluestone.attributeGroupsUrl}?page=${page}&pageSize=${pageSize}`, {
+    const url = `${environment.bluestone.attributeGroupsUrl}?page=${page}&pageSize=${pageSize}`
+    const response = await fetch(url, {
       method: 'GET',
       headers: { ...headers, context: environment.bluestone.context },
     })
@@ -97,10 +99,8 @@ const getAttributeGroups = async () => {
     groups.push(...pageGroups)
     page++
 
-    // If we got less than pageSize, we've reached the end
-    if (pageGroups.length < pageSize) break
-    // biome-ignore lint/correctness/noConstantCondition: pagination loop
-  } while (true)
+    hasMore = pageGroups.length >= pageSize
+  }
 
   return groups
 }
