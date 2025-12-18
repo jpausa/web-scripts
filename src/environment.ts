@@ -12,7 +12,14 @@ export const environment = {
   bluestone: {
     clientId: process.env.BLUESTONE_CLIENT_ID ?? '',
     clientSecret: process.env.BLUESTONE_CLIENT_SECRET ?? '',
-    authUrl: process.env.BLUESTONE_AUTH_URL ?? 'https://idp.test.bluestonepim.com/op/token',
+    authUrl: process.env.BLUESTONE_AUTH_URL ?? 'https://idp-us.bluestonepim.com/op/token',
+    getAttributesUrl: process.env.BLUESTONE_GET_ATTRIBUTES_URL ?? 'https://idp-us.bluestonepim.com/v1/attributes',
+    managementApiUrl: process.env.BLUESTONE_MANAGEMENT_API_URL ?? 'https://api-us.bluestonepim.com/pim',
+    attributeGroupsUrl:
+      process.env.BLUESTONE_ATTRIBUTE_GROUPS_URL ?? 'https://api-us.bluestonepim.com/pim/attributeGroups',
+    definitionsUrl: process.env.BLUESTONE_DEFINITIONS_URL ?? 'https://api-us.bluestonepim.com/pim/definitions',
+    apiKey: process.env.BLUESTONE_API_KEY ?? '',
+    context: process.env.BLUESTONE_API_CONTEXT ?? 'en',
   },
   algolia: {
     appId: process.env.ALGOLIA_APP_ID ?? '',
